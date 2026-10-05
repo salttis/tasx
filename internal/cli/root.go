@@ -167,8 +167,9 @@ func Execute(txAlias bool) error {
 		Use:   "version",
 		Short: "Näytä ohjelmaversio",
 		Args:  cobra.NoArgs,
-		Run: func(cmd *cobra.Command, _ []string) {
-			fmt.Fprintln(cmd.OutOrStdout(), version)
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			_, err := fmt.Fprintln(cmd.OutOrStdout(), version)
+			return err
 		},
 	})
 	return root.Execute()

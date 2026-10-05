@@ -1,0 +1,119 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.0"
+          check-latest: true
+      - name: Check formatting
+        shell: bash
+        run: |
+          files="$(gofmt -l .)"
+          if [[ -n "$files" ]]; then
+            printf 'Go files need gofmt:\n%s\n' "$files"
+            exit 1
+          fi
+      - name: Vet
+        run: go vet ./...
+      - name: Build
+        run: go build -trimpath ./...
+
+  build:
+    needs: verify
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - goos: windows
+            goarch: amd64
+            extension: .exe
+          - goos: windows
+            goarch: arm64
+            extension: .exe
+          - goos: linux
+            goarch: amd64
+            extension: ""
+          - goos: linux
+            goarch: arm64
+            extension: ""
+          - goos: darwin
+            goarch: amd64
+            extension: ""
+          - goos: darwin
+            goarch: arm64
+            extension: ""
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.27.0"
+          check-latest: true
+      - name: Install license collector
+        env:
+          GOBIN: ${{ runner.temp }}/tasx-tools
+        run: go install github.com/google/go-licenses/v2@v2.0.1
+      - name: Build and package
+        id: package
+        shell: bash
+        env:
+          TARGET_GOOS: ${{ matrix.goos }}
+          TARGET_GOARCH: ${{ matrix.goarch }}
+          EXTENSION: ${{ matrix.extension }}
+          LICENSE_COLLECTOR: ${{ runner.temp }}/tasx-tools/go-licenses
+        run: |
+          version="${GITHUB_REF_NAME#v}"
+          if [[ ! "$GITHUB_REF_NAME" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "Release tags must use vMAJOR.MINOR.PATCH (for example v1.0.0)." >&2
+            exit 1
+          fi
+          package="tasx_${version}_${TARGET_GOOS}_${TARGET_GOARCH}"
+          mkdir -p "dist/$package"
+          GOOS="$TARGET_GOOS" GOARCH="$TARGET_GOARCH" go build -trimpath \
+            -ldflags "-s -w -X github.com/salttis/tasx/internal/cli.version=$version" \
+            -o "dist/$package/tasx$EXTENSION" ./cmd/tasx
+          cp "dist/$package/tasx$EXTENSION" "dist/$package/tx$EXTENSION"
+          GOOS="$TARGET_GOOS" GOARCH="$TARGET_GOARCH" "$LICENSE_COLLECTOR" save ./cmd/tasx \
+            --save_path="dist/$package/third_party_licenses"
+          cp README.md CHANGELOG.md LICENSE "dist/$package/"
+          cp -R docs "dist/$package/docs"
+          tar -czf "$package.tar.gz" -C dist "$package"
+          mv "$package.tar.gz" dist/
+          echo "path=dist/$package.tar.gz" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.goos }}-${{ matrix.goarch }}
+          path: ${{ steps.package.outputs.path }}
+          if-no-files-found: error
+          retention-days: 7
+
+  draft:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+      - name: Create checksums
+        working-directory: dist
+        run: sha256sum tasx_*.tar.gz > SHA256SUMS
+      - uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          generate_release_notes: true
+          files: |
+            dist/tasx_*.tar.gz
+            dist/SHA256SUMS

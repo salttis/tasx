@@ -10,7 +10,7 @@ Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI 
 
 **Tulos:** erillinen Go-repo, nykytilaa kuvaava dokumentaatio, koneellisesti luettava roadmap ja CLI/TUI.
 
-**Tila:** dokumentaatiopaketti ja roadmap laadittu. Roadmapin Go-parseri ja tekstikomento on toteutettu; TUI:n interaktiivista toimintaa ei ole todennettu aidossa terminaalissa.
+**Tila:** dokumentaatiopaketti, roadmapin Go-parseri ja tekstikomento, v1.0-julkaisupaketit sekä palautettava Windows-asennus on toteutettu. TUI:n interaktiivista toimintaa ei ole vielä todennettu aidossa Windows-terminaalissa.
 
 **Hyväksymiskriteerit:**
 
@@ -71,7 +71,7 @@ Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI 
 - [x] TUI käyttää samaa tallennuskerrosta kuin CLI eikä kirjoita omaa erillistä tallennuslogiikkaa.
 - [x] Tehtävän lisäys, valmistuminen, uudelleenavaus ja tilanvaihdot ovat käytettävissä näppäimistöltä.
 - [x] Haku, suodatus, scopen vaihto, tyhjät/puuttuvat scopet, virheet ja kapeat terminaalikoot on toteutettu.
-- [ ] Interaktiivinen käyttö tarkistetaan Windowsin aidossa terminaalissa.
+- [ ] Interaktiivinen käyttö tarkistetaan Windowsin aidossa terminaalissa ennen v1.0-julkaisun julkaisemista.
 - [x] `tx`-käynnistys dokumentoidaan eikä asennus vaihda PATHia hiljaisesti.
 
 ## Vaihe 5 — Käyttäjäkomennon käyttöönotto ja vakautus
@@ -81,9 +81,10 @@ Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI 
 **Hyväksymiskriteerit:**
 
 - [x] CLI:n JSON-ulostuloa ei toteuteta; tekstikäyttöliittymä on dokumentoitu.
-- [ ] Asennus-/päivitystapa on toistettava ja palautettava.
-- [ ] Go-binaarin `tasx`- ja `tx`-käynnistyskäytös on vahvistettu ennen vanhan komentopolun muuttamista.
-- [ ] Vanhan PowerShell-toteutuksen poistamisesta tai säilyttämisestä tehdään erillinen päätös vasta vastaavuuden jälkeen.
+- [x] `tx`-asennus on versionoitavissa, toistettava ja palautettavissa edelliseen binääriin.
+- [x] Tagipohjainen julkaisuputki rakentaa monialustaiset binäärit, tarkistussummat ja tarkastettavan draft-julkaisun.
+- [x] Jakelupaketti sisältää erilliset `tasx`- ja `tx`-binäärinimet; `tasx`-oletuslistaus on vahvistettu CLI-ajossa. `tx`-TUI:n interaktiivinen käynnistys on vielä vaiheessa 4 lueteltu julkaisuportti.
+- [x] Vanha PowerShell-toteutus säilytetään, kunnes käyttäjä erikseen ottaa Go-komentopolun käyttöön.
 
 ## Aikataulu ja priorisointi
 

@@ -9,8 +9,10 @@ Acceptance criteria:
 - [x] Roadmap-rajapinta näyttää tavoitteet, hyväksymiskriteerit, vaiheet ja tehtäväriippuvuudet tekstinä.
 - [x] CLI ei tarjoa JSON-ulostuloa.
 - [x] TUI tarjoaa tehtävien käsittelyn samalla tallennuskerroksella kuin CLI.
-- [ ] TUI:n interaktiivinen käyttö vahvistetaan aidossa Windows-terminaalissa.
+- [ ] TUI:n interaktiivinen käyttö vahvistetaan aidossa Windows-terminaalissa ennen v1.0-julkaisun julkaisemista.
 - [ ] `tx`- ja `tasx`-käynnistysmigraatio tehdään vasta yhteensopivuuden tarkistamisen jälkeen.
+- [x] v1.0-julkaisun asennus tukee versionumeroa, säilyttää edellisen binäärin ja tarjoaa palautuksen.
+- [x] v1.0-julkaisupaketit ja tarkistussummat rakentuvat Git-tagista, ja julkaisu luodaan ensin draftina.
 
 ### phase:documentation | Projektin dokumentaatio
 

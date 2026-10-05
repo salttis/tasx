@@ -29,7 +29,7 @@ Asenna `tx` nykyisen käyttäjän komentohakemistoon:
 pwsh -NoProfile -File .\scripts\install.ps1
 ```
 
-Asennusskripti rakentaa `dist\tx.exe`-binäärin ja kopioi sen `~\.personal\scripts`-hakemistoon. Se ei muuta PATH-asetusta.
+Asennusskripti rakentaa `dist\tx.exe`-binäärin ja kopioi sen `~\.personal\scripts`-hakemistoon. Se ei muuta PATH-asetusta. Julkaisuversion voi antaa `-Version`-valitsimella; jos aiempi `tx.exe` on olemassa, se säilytetään palautuskopiona. Lisätiedot: [julkaisuopas](./release.md).
 
 ## Nykyiset Go-komennot
 

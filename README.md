@@ -2,6 +2,10 @@
 
 Tasx on local-first tehtävänhallintaohjelma, joka tukee vain Markdown-checkbox-formaattia. Vanhaa formaattia tai migraatiota ei tueta; CLI näyttää tulokset tekstinä eikä tuota JSON-ulostuloja. Katso [tehtäväformaatti](./docs/task-file-format.md) ja muu [dokumentaatio](./docs/README.md).
 
+## Julkaisu
+
+Tasxin julkaisu- ja asennusohjeet, v1.0:n hyväksymisportit sekä tagipohjainen julkaisuputki on kuvattu [julkaisuoppaassa](./docs/release.md). v1.0:n versiomerkkijono tulee Git-tagista; kehitysbuildit näyttävät `dev`.
+
 ## Dokumentaatio
 
 Projektin suunnitelma, nykyisen toteutuksen kuvaus ja kehitysohjeet on koottu [docs-hakemistoon](./docs/README.md).
@@ -25,6 +29,18 @@ pwsh -NoProfile -File .\scripts\install.ps1
 ```
 
 Tämä luo `dist\tx.exe`-ohjelman ja kopioi sen hakemistoon `~\.personal\scripts`, joka on Tasxin henkilökohtaisten komentojen hakemisto. Ohjelma ei muuta PATH-asetusta. Avaa uusi terminaali tarvittaessa.
+
+Julkaistun version voi asentaa esimerkiksi näin:
+
+```powershell
+pwsh -NoProfile -File .\scripts\install.ps1 -Version 1.0.0
+```
+
+Jos aiempi `tx.exe` oli olemassa, asennus säilyttää sen vieressä palautuskopion. Palautus:
+
+```powershell
+pwsh -NoProfile -File .\scripts\install.ps1 -Rollback
+```
 
 ## Käyttäjäkohtaiset oletukset
 

@@ -5,6 +5,7 @@ Tämä hakemisto kuvaa Tasxin tavoitellun toiminnan ja Go-version tämänhetkise
 ## Oppaat
 
 - [Käyttö](./usage.md) — nykyiset Go-komennot, TUI ja asennus.
+- [Julkaisu](./release.md) — v1.0-portit, versiointi, julkaisuputki ja asennuksen palautus.
 - [Asetukset](./configuration.md) — `~/.tasxrc`, ympäristömuuttujat ja scopen valinta.
 - [Tehtävätiedoston formaatti](./task-file-format.md) — tallennusmalli ja Go-parserin tämänhetkinen kattavuus.
 - [Arkkitehtuuri](./architecture.md) — ohjelman paketit, vastuut ja riippuvuudet.

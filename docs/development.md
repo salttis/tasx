@@ -24,6 +24,8 @@ Asennetun käyttäjäkomennon päivittäminen:
 pwsh -NoProfile -File .\scripts\install.ps1
 ```
 
+Julkaisuversion asennus ja edellisen binäärin palautus on kuvattu [julkaisuoppaassa](./release.md).
+
 ## Muutosohjeet
 
 - Säilytä CLI ei-interaktiivisena, kun käyttäjä ei käynnistä TUI:ta.

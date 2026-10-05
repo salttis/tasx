@@ -1,7 +1,7 @@
 # Tasx-projektisuunnitelma
 
-**Päivitetty:** 2026-10-05  
-**Tila:** Go-versio lukee ja kirjoittaa Markdown-tehtäviä, tarjoaa tekstimuotoisen roadmap-komennon ja kirjoittavan kolmen paneelin TUI:n. TUI:n vuorovaikutteinen validointi aidossa Windows-terminaalissa on vielä tekemättä.
+**Päivitetty:** 2026-10-05
+**Tila:** Go-versio lukee ja kirjoittaa Markdown-tehtäviä, tarjoaa tekstimuotoisen roadmap-komennon ja kirjoittavan kolmen paneelin TUI:n. v1.0:n versiointi, jakelupaketit ja `tx`-asennuksen palautuspolku on toteutettu. TUI:n vuorovaikutteinen validointi aidossa Windows-terminaalissa on vielä tekemättä ja on julkaisun tarkastusportti.
 
 ## Tavoite
 
@@ -22,8 +22,9 @@ Go-repossa on:
 - Koneellisesti luettavan roadmapin jäsennys ja CLI-tekstiesitys.
 - Tehtävien lisäys, valmistuminen, uudelleenavaus, työnkulkutilan muutos sekä käyttäjän käynnistämä arkistointi.
 - `tx.exe`-asennusskripti.
+- Git-tageihin perustuva v1.0:n monialustainen julkaisuputki, tarkistussummat ja palautettava käyttäjäkohtainen `tx.exe`-asennus.
 
-Vanhaa riviformaattia, muunnosta tai JSON-tulostetta ei tueta. Roadmap-käskyn lisäksi projektien tilakooste puuttuu. TUI:n interaktiivinen käyttö ei ole vielä vahvistettu oikeassa Windows-terminaalissa. Yksityiskohtainen rajaus on [tehtäväformaattikuvauksessa](./task-file-format.md).
+Vanhaa riviformaattia, muunnosta tai JSON-tulostetta ei tueta. Roadmap-käskyn lisäksi projektien tilakooste puuttuu. TUI:n interaktiivinen käyttö ei ole vielä vahvistettu oikeassa Windows-terminaalissa; v1.0-julkaisu valmistellaan draftina, kunnes tarkistus on tehty. Yksityiskohtainen rajaus on [tehtäväformaattikuvauksessa](./task-file-format.md).
 
 ## Toimintaperiaatteet
 
