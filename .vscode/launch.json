@@ -1,0 +1,29 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Tasx CLI (repo tasks)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}\\cmd\\tasx",
+            "args": [
+                "list",
+                "--repo"
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Tasx TUI (repo tasks)",
+            "type": "go",
+            "request": "launch",
+            "mode": "auto",
+            "program": "${workspaceFolder}\\cmd\\tasx",
+            "args": [
+                "--repo",
+                "tui"
+            ],
+            "console": "integratedTerminal"
+        }
+    ]
+}

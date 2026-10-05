@@ -1,0 +1,142 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Tasx: Run CLI (repo tasks)",
+            "type": "process",
+            "command": "go",
+            "args": [
+                "run",
+                "./cmd/tasx",
+                "list",
+                "--repo"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Tasx: Run TUI (repo tasks)",
+            "type": "process",
+            "command": "go",
+            "args": [
+                "run",
+                "./cmd/tasx",
+                "--repo",
+                "tui"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Tasx: Test",
+            "type": "process",
+            "command": "go",
+            "args": [
+                "test",
+                "./..."
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "test",
+            "problemMatcher": "$go"
+        },
+        {
+            "label": "Tasx: Check formatting",
+            "type": "process",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "$ErrorActionPreference = 'Stop'; $files = @(gofmt -l .); if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; if ($files.Count -gt 0) { Write-Error ('Go files need gofmt: ' + ($files -join ', ')) }; Write-Output 'gofmt passed.'"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Tasx: Vet",
+            "type": "process",
+            "command": "go",
+            "args": [
+                "vet",
+                "./..."
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": "$go"
+        },
+        {
+            "label": "Tasx: Build Windows binary",
+            "type": "process",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "$ErrorActionPreference = 'Stop'; New-Item -ItemType Directory -Force -Path '.\\dist' | Out-Null; go build -trimpath -o '.\\dist\\tasx.exe' .\\cmd\\tasx; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; Write-Output 'Built dist\\tasx.exe.'"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "group": "build",
+            "problemMatcher": "$go"
+        },
+        {
+            "label": "Tasx: Release checks",
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Tasx: Check formatting",
+                "Tasx: Test",
+                "Tasx: Vet",
+                "Tasx: Build Windows binary"
+            ],
+            "problemMatcher": []
+        },
+        {
+            "label": "Tasx: Check clean release worktree",
+            "type": "process",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "$ErrorActionPreference = 'Stop'; $status = @(git status --porcelain); if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; if ($status.Count -gt 0) { throw 'Commit or stash all worktree changes before publishing a release tag.' }; Write-Output 'Release worktree is clean.'"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        },
+        {
+            "label": "Tasx: Publish release tag (starts draft release)",
+            "type": "process",
+            "command": "pwsh",
+            "args": [
+                "-NoProfile",
+                "-Command",
+                "$ErrorActionPreference = 'Stop'; $tag = 'v${input:releaseVersion}'; if ($tag -notmatch '^v[0-9]+\\.[0-9]+\\.[0-9]+$') { throw 'Version must be MAJOR.MINOR.PATCH.' }; git tag -a $tag -m ('Tasx ' + $tag); if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }; git push origin $tag; if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "dependsOrder": "sequence",
+            "dependsOn": [
+                "Tasx: Release checks",
+                "Tasx: Check clean release worktree"
+            ],
+            "problemMatcher": []
+        }
+    ],
+    "inputs": [
+        {
+            "id": "releaseVersion",
+            "type": "promptString",
+            "description": "Julkaisuversio (MAJOR.MINOR.PATCH, esim. 1.0.0)"
+        }
+    ]
+}

@@ -18,6 +18,15 @@ go run ./cmd/tasx list --repo
 go run ./cmd/tasx tui
 ```
 
+## Visual Studio Code
+
+`.vscode/launch.json` sisältää CLI- ja TUI-debuggausprofiilit. Molemmat käyttävät eksplisiittisesti repon tehtävälistaa. Komennot löytyvät `Terminal > Run Task` -valikosta:
+
+- `Tasx: Run CLI (repo tasks)` ja `Tasx: Run TUI (repo tasks)` käynnistävät sovelluksen.
+- `Tasx: Test`, `Tasx: Check formatting`, `Tasx: Vet` ja `Tasx: Build Windows binary` suorittavat vastaavat kehitystarkistukset.
+- `Tasx: Release checks` ajaa muotoilu-, testi-, vet- ja build-tarkistukset järjestyksessä.
+- `Tasx: Publish release tag (starts draft release)` luo version perusteella annotatoidun tagin ja pushaa sen `origin`-remoteen. Tämä käynnistää GitHub Actionsin draft-julkaisun; suorita tehtävä vain, kun versio on valmis julkaistavaksi.
+
 Asennetun käyttäjäkomennon päivittäminen:
 
 ```powershell
