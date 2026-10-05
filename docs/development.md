@@ -25,7 +25,8 @@ go run ./cmd/tasx tui
 - `Tasx: Run CLI (repo tasks)` ja `Tasx: Run TUI (repo tasks)` käynnistävät sovelluksen.
 - `Tasx: Test`, `Tasx: Check formatting`, `Tasx: Vet` ja `Tasx: Build Windows binary` suorittavat vastaavat kehitystarkistukset.
 - `Tasx: Release checks` ajaa muotoilu-, testi-, vet- ja build-tarkistukset järjestyksessä.
-- `Tasx: Publish release tag (starts draft release)` luo version perusteella annotatoidun tagin ja pushaa sen `origin`-remoteen. Tämä käynnistää GitHub Actionsin draft-julkaisun; suorita tehtävä vain, kun versio on valmis julkaistavaksi.
+
+Minor- ja major-julkaisun automatisointi on kuvattu [julkaisuoppaassa](./release.md); käytä `.\scripts\release.ps1 minor` tai `.\scripts\release.ps1 major`.
 
 Asennetun käyttäjäkomennon päivittäminen:
 
@@ -41,7 +42,7 @@ Julkaisuversion asennus ja edellisen binäärin palautus on kuvattu [julkaisuopp
 - Pidä TUI-framework käyttöliittymäpaketissa ja jaa sovellusoperaatiot CLI:n kanssa.
 - Älä muuta tehtävätiedostoa suoraan osana dokumentaatiota tai listauskomentoja.
 - Käsittele vanhoja rivejä säilyttävästi; älä pudota tuntemattomia kenttiä.
-- Tasx tukee vain Markdown-checkbox-tehtäväformaattia; älä lisää vanhan formaatin parseria tai migraatiopolkuja.
+- Tasx tukee vain Markdown-checkbox-tehtäväformaattia.
 - Älä lisää riippuvuutta, jos nykyisen kirjaston tai standardikirjaston ratkaisu riittää.
 - Päivitä tätä dokumentaatiota, projektisuunnitelmaa tai roadmapia, kun toteutettu käyttäytyminen tai vaihe muuttuu.
 

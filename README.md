@@ -1,10 +1,17 @@
 # Tasx
 
-Tasx on local-first tehtävänhallintaohjelma, joka tukee vain Markdown-checkbox-formaattia. Vanhaa formaattia tai migraatiota ei tueta; CLI näyttää tulokset tekstinä eikä tuota JSON-ulostuloja. Katso [tehtäväformaatti](./docs/task-file-format.md) ja muu [dokumentaatio](./docs/README.md).
+Tasx on local-first tehtävänhallintaohjelma, joka tukee vain Markdown-checkbox-formaattia. CLI näyttää tulokset tekstinä. Katso [tehtäväformaatti](./docs/task-file-format.md) ja muu [dokumentaatio](./docs/README.md).
 
 ## Julkaisu
 
-Tasxin julkaisu- ja asennusohjeet, v1.0:n hyväksymisportit sekä tagipohjainen julkaisuputki on kuvattu [julkaisuoppaassa](./docs/release.md). v1.0:n versiomerkkijono tulee Git-tagista; kehitysbuildit näyttävät `dev`.
+Tee minor- tai major-julkaisu repojuuresta:
+
+```powershell
+.\scripts\release.ps1 minor
+.\scripts\release.ps1 major
+```
+
+Skripti tarkistaa työpuun ja GitHub-tilan, ajaa tarkistukset, luo version Git-tagin ja julkaisee sen jälkeen GitHub-releasen julkiseksi. Se pyytää kirjoittamaan ehdotetun tagin ennen ulospäin julkaisevia toimia. Tarkemmat vaatimukset ja vaiheet ovat [julkaisuoppaassa](./docs/release.md). Versio tulee Git-tagista; kehitysbuildit näyttävät `dev`.
 
 ## Dokumentaatio
 
@@ -20,15 +27,15 @@ go run ./cmd/tasx list --repo
 go run ./cmd/tasx tui
 ```
 
-Tasx päättelee oletusscopen ajokontekstista: repossa käytetään repon tehtävälistaa, muualla käyttäjälistaa. `tasx list projektinimi` näyttää rekisteröidyn projektin tehtävät, ja projektikohtaisia tehtäviä voi käsitellä mistä tahansa `projekti-numero`-ID:llä. `tasx roadmap [projektinimi]` näyttää roadmapin tavoite- ja vaiheistuksen tekstinä. `tasx tui` avaa Lazygit-tyylisen kolmen paneelin näppäimistöliittymän tehtävänäkymällä ja roadmap-tiedoilla. `tx` avaa TUI:n ilman argumentteja.
+Tasx päättelee oletusscopen ajokontekstista: repossa käytetään repon tehtävälistaa, muualla käyttäjälistaa. `tasx.exe list projektinimi` näyttää rekisteröidyn projektin tehtävät, ja projektikohtaisia tehtäviä voi käsitellä mistä tahansa `projekti-numero`-ID:llä. `tasx.exe roadmap [projektinimi]` näyttää roadmapin tavoite- ja vaiheistuksen tekstinä. `tasx.exe tui` avaa Lazygit-tyylisen kolmen paneelin näppäimistöliittymän tehtävänäkymällä ja roadmap-tiedoilla. `tx` avaa TUI:n ilman argumentteja.
 
-Rakenna ja asenna `tx` nykyisen käyttäjän henkilökohtaiseen komentohakemistoon:
+Rakenna ja asenna `tasx`-CLI sekä `tx`-TUI-aliaksen nykyisen käyttäjän henkilökohtaiseen komentohakemistoon:
 
 ```powershell
 pwsh -NoProfile -File .\scripts\install.ps1
 ```
 
-Tämä luo `dist\tx.exe`-ohjelman ja kopioi sen hakemistoon `~\.personal\scripts`, joka on Tasxin henkilökohtaisten komentojen hakemisto. Ohjelma ei muuta PATH-asetusta. Avaa uusi terminaali tarvittaessa.
+Tämä luo `dist\tasx.exe`- ja `dist\tx.exe`-ohjelmat ja kopioi molemmat hakemistoon `~\.personal\scripts`, joka on Tasxin henkilökohtaisten komentojen hakemisto. `tasx.exe` käynnistää CLI:n ja `tx` TUI:n. Asennin ei korvaa mahdollista vanhaa `tasx.ps1`-komentoa; PowerShellissä käytä `tasx.exe`-nimeä, jos vanha skripti on samassa hakemistossa. Ohjelma ei muuta PATH-asetusta. Avaa uusi terminaali tarvittaessa.
 
 Julkaistun version voi asentaa esimerkiksi näin:
 
@@ -36,7 +43,7 @@ Julkaistun version voi asentaa esimerkiksi näin:
 pwsh -NoProfile -File .\scripts\install.ps1 -Version 1.0.0
 ```
 
-Jos aiempi `tx.exe` oli olemassa, asennus säilyttää sen vieressä palautuskopion. Palautus:
+Jos aiempi `tasx.exe` tai `tx.exe` oli olemassa, asennus säilyttää siitä erillisen palautuskopion. Palautus:
 
 ```powershell
 pwsh -NoProfile -File .\scripts\install.ps1 -Rollback

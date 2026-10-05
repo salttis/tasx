@@ -7,7 +7,7 @@
 
 Rakentaa Tasxista itsenäinen, local-first Go-tehtävänhallintaohjelma, jossa CLI on ensisijainen rajapinta ja Lazygit-tyylinen TUI nopeuttaa päivittäistä selausta ja tehtävien käsittelyä. Ohjelma tukee ainoastaan Markdown-checkbox-tehtäväformaattia ja toimii paikallisesti ilman palvelua tai tietokantaa.
 
-`tasx` tarjoaa ihmisluettavat komentorivitulosteet; JSON-ulostuloa ei ole. Asennettu `tx`-binäärinimi avaa TUI:n ilman argumentteja.
+`tasx` tarjoaa ihmisluettavat komentorivitulosteet. Asennettu `tx`-binäärinimi avaa TUI:n ilman argumentteja.
 
 ## Nykytila
 
@@ -24,12 +24,12 @@ Go-repossa on:
 - `tx.exe`-asennusskripti.
 - Git-tageihin perustuva v1.0:n monialustainen julkaisuputki, tarkistussummat ja palautettava käyttäjäkohtainen `tx.exe`-asennus.
 
-Vanhaa riviformaattia, muunnosta tai JSON-tulostetta ei tueta. Roadmap-käskyn lisäksi projektien tilakooste puuttuu. TUI:n interaktiivinen käyttö ei ole vielä vahvistettu oikeassa Windows-terminaalissa; v1.0-julkaisu valmistellaan draftina, kunnes tarkistus on tehty. Yksityiskohtainen rajaus on [tehtäväformaattikuvauksessa](./task-file-format.md).
+Roadmap-käskyn lisäksi projektien tilakooste puuttuu. TUI:n interaktiivinen käyttö ei ole vielä vahvistettu oikeassa Windows-terminaalissa; v1.0-julkaisu valmistellaan draftina, kunnes tarkistus on tehty. Yksityiskohtainen rajaus on [tehtäväformaattikuvauksessa](./task-file-format.md).
 
 ## Toimintaperiaatteet
 
 1. **Yksi tietolähde per scope:** käyttäjätason `~/.personal/tasks` tai repon `.ai/tasks`. Tiedosto on Markdown-yhteensopiva. Ei tietokantaa, daemonia, `tasks/`-hakemistoa eikä erillistä valmiiden tehtävien arkistoa.
-2. **Markdown-only:** Go tukee vain Markdown-checkbox-formaattia. Vanhalle riviformaatille ei tehdä parseria tai muunnosta.
+2. **Markdown-only:** Go tukee vain Markdown-checkbox-formaattia.
 3. **Ei hiljaista scope-vaihtoa:** eksplisiittinen `--repo` vaatii repo-listan. Automaattinen oletus voi käyttää käyttäjälistausta, jos repo-listaa ei ole.
 4. **TUI ei omista domain-logiikkaa:** CLI:n ja TUI:n tulee käyttää samoja tehtävä- ja tallennustoimintoja.
 5. **Vain tarpeelliset riippuvuudet:** Cobra CLI:lle, Bubble Tea/Lipgloss TUI:lle ja TOML-konfiguraatiolle. `log/slog` on loggerin API. Shared Go -moduuli on valinnainen eikä Tasxin build saa riippua paikallisesta `replace`-polusta.
@@ -38,7 +38,7 @@ Vanhaa riviformaattia, muunnosta tai JSON-tulostetta ei tueta. Roadmap-käskyn l
 ## Onnistumiskriteerit
 
 - Go-versio pystyy lukemaan nykyisiä käyttäjätason ja repo-tason tehtävälistoja muuttamatta niitä.
-- CLI:n listaus-, suodatus-, muokkaus-, tilanvaihto-, valmis-/uudelleenavaus-, scope- ja roadmap-käyttötavat ovat dokumentoituja. Tuloste on tekstimuotoinen, ei JSON.
+- CLI:n listaus-, suodatus-, muokkaus-, tilanvaihto-, valmis-/uudelleenavaus-, scope- ja roadmap-käyttötavat ovat dokumentoituja. Tuloste on tekstimuotoinen.
 - Kirjoittavat operaatiot muuttavat vain kohderiviä, lisäävät tehtävän tai siirtävät sen arkistoon; virhe ei jätä osittaista tai rikkoutunutta tiedostoa. Tehtävän ID säilyy arkistoinnissa.
 - TUI:ssa tehtävät voidaan selata ja käsitellä samoilla sovellusoperaatioilla kuin CLI:ssä. TUI:ta käytetään aidossa terminaalissa ennen sen julistamista valmiiksi.
 - `tx`-asennus ja Go-version käyttöönotto eivät muuta PATHia tai korvaa vanhaa `tasx`-komentoa automaattisesti.

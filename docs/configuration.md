@@ -35,4 +35,4 @@ Tulostetut asetukset:
 tasx config
 ```
 
-Komento näyttää asetukset tavallisena tekstinä; CLI ei tarjoa JSON-ulostuloa.
+Komento näyttää asetukset tavallisena tekstinä.

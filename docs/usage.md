@@ -23,13 +23,13 @@ go run ./cmd/tasx tui
 
 Go-binäärin `tasx`-nimi listaa ilman argumentteja. `tx`-nimellä käynnistetty sama binääri avaa TUI:n ilman argumentteja. Molemmat binäärinimet hyväksyvät eksplisiittiset alikomennot, kuten `list` ja `tui`.
 
-Asenna `tx` nykyisen käyttäjän komentohakemistoon:
+Asenna `tasx`-CLI ja `tx`-TUI-alias nykyisen käyttäjän komentohakemistoon:
 
 ```powershell
 pwsh -NoProfile -File .\scripts\install.ps1
 ```
 
-Asennusskripti rakentaa `dist\tx.exe`-binäärin ja kopioi sen `~\.personal\scripts`-hakemistoon. Se ei muuta PATH-asetusta. Julkaisuversion voi antaa `-Version`-valitsimella; jos aiempi `tx.exe` on olemassa, se säilytetään palautuskopiona. Lisätiedot: [julkaisuopas](./release.md).
+Asennusskripti rakentaa `dist\tasx.exe`- ja `dist\tx.exe`-binäärit ja kopioi molemmat `~\.personal\scripts`-hakemistoon. `tasx.exe` käynnistää CLI:n ja `tx` TUI:n. Se ei muuta PATH-asetusta. Asennin ei korvaa mahdollista vanhaa `tasx.ps1`-komentoa; käytä PowerShellissä `tasx.exe`-nimeä, jos skripti on samassa hakemistossa. Julkaisuversion voi antaa `-Version`-valitsimella; aiemmat binäärit säilytetään erillisinä palautuskopioina. Lisätiedot: [julkaisuopas](./release.md).
 
 ## Nykyiset Go-komennot
 
@@ -47,7 +47,7 @@ Asennusskripti rakentaa `dist\tx.exe`-binäärin ja kopioi sen `~\.personal\scri
 
 Oletuksena Tasx päättelee scopen ajokontekstista: repossa käytetään sen `.ai/tasks`-listaa, muualla käyttäjälistaa. `--repo` ja `--global` ovat eksplisiittisiä ylikirjoituksia; ne eivät ole yhdistettävissä. Projektin nimi `list`-komennossa, ID:n projektietuliitteessä tai `add --projekti`-valitsimessa hakee scopen projektirekisteristä.
 
-Tasx tukee vain Markdown-checkbox-formaattia. Vanha formaatti ja migraatiokomennot eivät ole tuettuja. CLI ei tuota JSON-tulosteita.
+Tasx tukee vain Markdown-checkbox-formaattia.
 
 ## TUI-näppäimet
 

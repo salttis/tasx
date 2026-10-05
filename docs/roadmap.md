@@ -4,7 +4,7 @@ Roadmap kuvaa tavoitellut tulokset; se ei muuta tehtävien tiloja. Koneellisesti
 
 ## Päämäärä
 
-Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI Markdown-tehtäväformaattiin. Vanhaa tehtäväformaattia tai migraatiota ei tueta.
+Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI Markdown-tehtäväformaattiin.
 
 ## Vaihe 0 — Perusta ja projektin dokumentaatio
 
@@ -20,12 +20,11 @@ Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI 
 
 ## Vaihe 1 — Markdown-tehtäväformaatti
 
-**Tulos:** Tasx tukee vain Markdown-checkbox-tehtäväformaattia. Vanhan formaatin tuki ja muunto poistetaan.
+**Tulos:** Tasx tukee vain Markdown-checkbox-tehtäväformaattia.
 
 **Hyväksymiskriteerit:**
 
 - [x] Markdown-tehtävät, metatiedot, osiot ja alitehtävät luetaan ja kirjoitetaan.
-- [x] Vanhan formaatin parseri ja migraatiokomento eivät kuulu ohjelmaan.
 
 ## Vaihe 1a — Tehtävämetatiedot ja aikaleimat
 
@@ -35,7 +34,7 @@ Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI 
 
 - [x] ID:tön Markdown-checkbox näkyy tehtävänä.
 - [x] Osio, sisäkkäisyys, kommentit, `#tag`, `@tila`, `+projekti` ja ISO 8601 -aika tulkitaan erillisiksi kentiksi.
-- [x] Uuden formaatin lukukäyttäytyminen tarkistetaan käyttäjän esimerkillä live-ajossa.
+- [x] Markdown-formaatin lukukäyttäytyminen tarkistetaan käyttäjän esimerkillä live-ajossa.
 - [x] Kirjoittavat komennot päivittävät tehtävärivin lopussa olevan ISO 8601 -UTC-aikaleiman.
 
 ## Vaihe 2 — Säilyttävät kirjoitusoperaatiot ja CLI-vastaavuus
@@ -59,7 +58,7 @@ Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI 
 
 - [x] `tasx roadmap [projekti]` näyttää goal-, acceptance criteria-, phase- ja task-riippuvuustiedot.
 - [x] Roadmapin lukuvirheet ja puuttuvat tiedostot näytetään virheinä.
-- [x] CLI:n tuloste on ihmisluettava teksti; JSON-ulostuloa ei ole.
+- [x] CLI:n tuloste on ihmisluettava teksti.
 - [x] Tehtävän tila- ja scope-valinta pysyvät erillisinä.
 
 ## Vaihe 4 — Kirjoittava Lazygit-tyylinen TUI
@@ -80,7 +79,7 @@ Tasxista tulee luotettava, itsenäinen Go CLI ja näppäimistökäyttöinen TUI 
 
 **Hyväksymiskriteerit:**
 
-- [x] CLI:n JSON-ulostuloa ei toteuteta; tekstikäyttöliittymä on dokumentoitu.
+- [x] CLI:n tekstikäyttöliittymä on dokumentoitu.
 - [x] `tx`-asennus on versionoitavissa, toistettava ja palautettavissa edelliseen binääriin.
 - [x] Tagipohjainen julkaisuputki rakentaa monialustaiset binäärit, tarkistussummat ja tarkastettavan draft-julkaisun.
 - [x] Jakelupaketti sisältää erilliset `tasx`- ja `tx`-binäärinimet; `tasx`-oletuslistaus on vahvistettu CLI-ajossa. `tx`-TUI:n interaktiivinen käynnistys on vielä vaiheessa 4 lueteltu julkaisuportti.

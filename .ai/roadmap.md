@@ -4,10 +4,8 @@
 Outcome: Tasx toimii itsenäisenä local-first Go-ohjelmana, tukee Markdown-tehtäväformaattia, CLI:tä ja kirjoittavaa TUI:ta.
 Acceptance criteria:
 - [x] Markdown-checkbox-formaatti lukee osiot, hierarkian, kommentit ja metatiedot.
-- [x] Vanhaa tehtäväformaattia tai migraatiota ei tueta.
 - [x] Kirjoittavat operaatiot säilyttävät muokkaamattomat rivit ja metatiedot sekä suojaavat tiedoston virheiltä.
 - [x] Roadmap-rajapinta näyttää tavoitteet, hyväksymiskriteerit, vaiheet ja tehtäväriippuvuudet tekstinä.
-- [x] CLI ei tarjoa JSON-ulostuloa.
 - [x] TUI tarjoaa tehtävien käsittelyn samalla tallennuskerroksella kuin CLI.
 - [ ] TUI:n interaktiivinen käyttö vahvistetaan aidossa Windows-terminaalissa ennen v1.0-julkaisun julkaisemista.
 - [ ] `tx`- ja `tasx`-käynnistysmigraatio tehdään vasta yhteensopivuuden tarkistamisen jälkeen.

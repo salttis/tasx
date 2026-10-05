@@ -1,8 +1,8 @@
 # Tehtävätiedoston formaatti
 
-Tasx käyttää Markdown-checkbox-tehtävämuotoa. Vanhaa rivi-ID-formaattia tai muunnosta ei tueta.
+Tasx käyttää Markdown-checkbox-tehtävämuotoa.
 
-## Uusi Markdown-muoto
+## Markdown-muoto
 
 ### Osiot
 

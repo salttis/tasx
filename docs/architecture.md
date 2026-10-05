@@ -32,7 +32,7 @@ CLI ja TUI käyttävät samaa tallennuskerrosta tehtävien lisäykseen ja muutok
 - Rekisteröidyt repot haetaan käyttäjän projektirekisteristä `~/.personal/ai/projects` (tai valitusta personal-hakemistosta).
 - Scope ja tila ovat eri suodattimia. `--repo` ja `--global` ovat eksplisiittisiä valintoja.
 - Ilman scope-valitsinta nykyinen repo valitaan, jos sen tehtävälista on olemassa; muutoin käytetään käyttäjälistaa. Rekisteröidyn projektin voi valita `list <projekti>`, `add --projekti <projekti>` tai globaalilla `projekti-numero`-tehtävä-ID:llä.
-- Go-versio lukee Markdown-checkbox-tehtävät (ID valinnainen). Vanhaa tehtäväformaattia tai muuntoa ei tueta. Ks. [tehtäväformaatti](./task-file-format.md).
+- Go-versio lukee Markdown-checkbox-tehtävät (ID valinnainen). Ks. [tehtäväformaatti](./task-file-format.md).
 
 ## Käyttöliittymä
 

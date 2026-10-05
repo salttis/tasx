@@ -14,4 +14,4 @@ Ensimmäinen Go-julkaisu.
 - Suoraan linkitettyjen Go-riippuvuuksien lisenssitiedostot jakelupaketissa.
 - MIT-lisenssi.
 
-v1.0.0 ei sisällä vanhan tehtäväformaatin parseria tai migraatiota eikä JSON-ulostuloa. Windowsin TUI:n interaktiivinen tarkistus on erillinen julkaisuportti; GitHub Actions luo tagista draft-julkaisun manuaalista hyväksyntää varten.
+Windowsin TUI:n interaktiivinen tarkistus on erillinen julkaisuportti; GitHub Actions luo tagista draft-julkaisun manuaalista hyväksyntää varten.
